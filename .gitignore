@@ -1,0 +1,10 @@
+/node_modules
+.vscode
+.idea
+dist
+
+.env.prod
+.env.dev
+
+src/tmp/voices/*.ogg
+src/tmp/voices/*.mp3
