@@ -1,4 +1,6 @@
+import { removeFile } from 'bot/utils/remove-file.util';
 import { OPENAI_API_KEY } from 'environment/openai.env';
+import { createReadStream } from 'fs';
 import {
   ChatCompletionRequestMessage,
   ChatCompletionRequestMessageRoleEnum,
@@ -44,6 +46,7 @@ class OpenAI {
         model: 'gpt-3.5-turbo',
         messages,
       });
+      console.log(response);
       data = response.data.choices[0].message!;
 
       return data;
@@ -57,7 +60,7 @@ class OpenAI {
   async transcription(filepath: string): Promise<string> {
     let text = '';
     try {
-      const response = await this.core.createTranscription(file, 'whisper-1');
+      const response = await this.core.createTranscription(createReadStream(filepath).read(), 'whisper-1');
       text = response.data.text;
       return text;
     } catch (error: any) {

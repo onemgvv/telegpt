@@ -8,3 +8,5 @@ dist
 
 src/tmp/voices/*.ogg
 src/tmp/voices/*.mp3
+
+*.log
